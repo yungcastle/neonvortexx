@@ -1,0 +1,526 @@
+/* Base Styles */
+:root {
+    --primary: #0f0;
+    --secondary: #0a0;
+    --background: #111;
+    --terminal: #000;
+    --text: #ccc;
+    --accent: #00ff88;
+    --error: #f00;
+    --warning: #ff0;
+}
+
+@font-face {
+    font-family: 'Courier Prime';
+    src: url('assets/fonts/CourierPrime-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Courier Prime';
+    src: url('assets/fonts/CourierPrime-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: 'Courier Prime', monospace;
+    line-height: 1.6;
+    padding: 20px;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 0, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 20%);
+    background-attachment: fixed;
+}
+
+/* Terminal Styles */
+.terminal {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3),
+                0 0 40px rgba(0, 255, 136, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.terminal-header {
+    background-color: var(--terminal);
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--primary);
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-btn {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.terminal-btn.red { background-color: #ff5f56; }
+.terminal-btn.yellow { background-color: #ffbd2e; }
+.terminal-btn.green { background-color: #27c93f; }
+
+.terminal-title {
+    color: var(--primary);
+    font-size: 0.9rem;
+    text-shadow: 0 0 5px var(--primary);
+}
+
+.terminal-body {
+    background-color: var(--terminal);
+    padding: 20px;
+    min-height: 80vh;
+}
+
+.ascii-art {
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.command-line {
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: rgba(0, 20, 0, 0.3);
+    border-left: 3px solid var(--primary);
+}
+
+.prompt {
+    color: var(--accent);
+    margin-right: 10px;
+}
+
+.command {
+    color: var(--primary);
+}
+
+.typed {
+    position: relative;
+}
+
+.typed::after {
+    content: "|";
+    position: absolute;
+    right: -5px;
+    color: var(--primary);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Content Styles */
+.content {
+    margin-top: 20px;
+}
+
+.hacker-nav {
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+.hacker-nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.hacker-nav li {
+    margin-right: 15px;
+}
+
+.hacker-nav a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.hacker-nav a:hover {
+    color: var(--primary);
+}
+
+.hacker-nav a.active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+}
+
+.hacker-nav a i {
+    margin-right: 8px;
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+    padding-bottom: 10px;
+}
+
+h2 i {
+    margin-right: 10px;
+}
+
+/* Pack Grid */
+.pack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.pack-card {
+    background-color: rgba(0, 20, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    padding: 15px;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.pack-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+    transform: translateY(-5px);
+}
+
+.pack-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, transparent 100%);
+    z-index: 0;
+}
+
+.pack-card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.pack-name {
+    color: var(--primary);
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.pack-version {
+    color: var(--secondary);
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.pack-description {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pack-preview {
+    height: 120px;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.pack-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.pack-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.no-packs {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Upload Form */
+.upload-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+
+.hacker-input {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 10, 0, 0.5);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: var(--text);
+    font-family: 'Courier Prime', monospace;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.hacker-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+.hacker-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(0, 20, 0, 0.3);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    cursor: pointer;
+    font-family: 'Courier Prime', monospace;
+    font-size: 1rem;
+    transition: all 0.3s;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.hacker-button:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.hacker-button i {
+    margin-right: 8px;
+}
+
+/* Status Bar */
+.status-bar {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 255, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.status-item {
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+.status-item i {
+    margin-right: 5px;
+}
+
+.online {
+    color: var(--primary);
+    text-shadow: 0 0 5px var(--primary);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s;
+}
+
+.hacker-modal {
+    background-color: var(--terminal);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid var(--primary);
+    width: 80%;
+    max-width: 800px;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 1.5rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.close-btn:hover {
+    color: var(--error);
+}
+
+.pack-description {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.pack-preview {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.pack-preview img {
+    max-height: 200px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    transition: all 0.3s;
+}
+
+.pack-preview img:hover {
+    transform: scale(1.05);
+    border-color: var(--accent);
+}
+
+.pack-meta {
+    margin: 15px 0;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    color: #666;
+}
+
+.meta-item i {
+    margin-right: 5px;
+    color: var(--primary);
+}
+
+.download-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.mediafire-notice {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* About Section */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.system-info {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(0, 20, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.info-label {
+    color: var(--primary);
+    display: inline-block;
+    min-width: 120px;
+}
+
+.info-value {
+    color: var(--text);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pack-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .hacker-modal {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    .status-bar {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .pack-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hacker-nav ul {
+        flex-direction: column;
+    }
+    
+    .hacker-nav li {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+}
